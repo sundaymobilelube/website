@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrightPath Creative Studio</title>
-    <meta name="description" content="BrightPath Creative Studio designs and builds elevated digital experiences for mission-driven brands.">
+    <title>Sunday Mobile Lube | North Houston After-Hours Mobile Oil Change</title>
+    <meta name="description" content="Sunday Mobile Lube brings 15 years of experience to mobile oil changes across North Houston with 6–11 PM service and convenient call or text booking.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f4f6fb;
+            --brand-navy: #002D62;
+            --brand-orange: #EB6E1F;
+            --brand-orange-dark: #cf5c12;
+            --brand-sun: #F4911E;
+            --ink: #111827;
+            --muted: #6B7280;
             --surface: #ffffff;
-            --surface-dark: #0f172a;
-            --accent: #6366f1;
-            --accent-dark: #4338ca;
-            --text: #0f172a;
-            --text-muted: #475569;
-            --border: #e2e8f0;
-            --shadow: 0 18px 45px rgba(79, 70, 229, 0.15);
+            --bg: #f7f9fc;
+            --border: #E5E7EB;
+            --ring: rgba(0, 45, 98, 0.25);
+            --shadow: 0 18px 45px rgba(0, 45, 98, 0.12);
         }
 
         * {
@@ -28,26 +30,46 @@
         body {
             margin: 0;
             font-family: 'Work Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--text);
-            background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.12), transparent 45%),
-                        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.12), transparent 40%),
+            color: var(--ink);
+            background: linear-gradient(140deg, rgba(0, 45, 98, 0.08), transparent 55%),
+                        linear-gradient(310deg, rgba(235, 110, 31, 0.06), transparent 60%),
                         var(--bg);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            padding-top: 5.75rem;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: var(--brand-navy);
         }
 
         a {
-            color: inherit;
+            color: var(--brand-navy);
+        }
+
+        a:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px var(--ring);
+            border-radius: 0.5rem;
+        }
+
+        button:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px var(--ring);
         }
 
         header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: rgba(244, 246, 251, 0.85);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+            position: fixed;
+            inset: 0 0 auto 0;
+            z-index: 20;
+            background: rgba(247, 249, 252, 0.95);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(0, 45, 98, 0.1);
         }
 
         .container {
@@ -66,35 +88,39 @@
         .brand {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.65rem;
             font-weight: 700;
+            font-size: 1.05rem;
             letter-spacing: 0.02em;
-            color: var(--text);
+            color: var(--brand-navy);
             text-decoration: none;
         }
 
-        .brand-mark {
-            display: grid;
-            place-items: center;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 0.9rem;
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: #fff;
-            font-size: 1.05rem;
+        .brand-logo {
+            width: 2.25rem;
+            height: 2.25rem;
+            flex-shrink: 0;
+            display: block;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
             gap: clamp(0.75rem, 3vw, 2rem);
-            font-weight: 500;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: var(--brand-navy);
+            transition: max-height 200ms ease, opacity 200ms ease;
         }
 
         .nav-links a {
             text-decoration: none;
             position: relative;
+            color: var(--brand-navy);
+            padding-bottom: 0.35rem;
+        }
+
+        .nav-links .btn {
+            padding-bottom: 0;
         }
 
         .nav-links a::after {
@@ -104,14 +130,23 @@
             bottom: -0.35rem;
             width: 100%;
             height: 2px;
-            background: var(--accent);
+            background: var(--brand-orange);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 160ms ease;
         }
 
+        .nav-links a.btn::after {
+            display: none;
+        }
+
         .nav-links a:hover::after,
         .nav-links a:focus-visible::after {
+            transform: scaleX(1);
+        }
+
+        .nav-links a.active::after,
+        .nav-links a[aria-current="true"]::after {
             transform: scaleX(1);
         }
 
@@ -126,12 +161,17 @@
             font-size: 0.95rem;
             text-decoration: none;
             cursor: pointer;
-            border: none;
-            transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+            border: 2px solid transparent;
+            transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+        }
+
+        .btn:focus-visible {
+            box-shadow: 0 0 0 4px var(--ring);
+            border-radius: 999px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            background: var(--brand-orange);
             color: #fff;
             box-shadow: var(--shadow);
         }
@@ -139,18 +179,19 @@
         .btn-primary:hover,
         .btn-primary:focus-visible {
             transform: translateY(-2px);
-            box-shadow: 0 18px 45px rgba(79, 70, 229, 0.2);
+            background: var(--brand-orange-dark);
+            box-shadow: 0 18px 45px rgba(235, 110, 31, 0.25);
         }
 
         .btn-outline {
-            border: 1px solid rgba(99, 102, 241, 0.18);
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--accent);
+            border-color: var(--brand-navy);
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--brand-navy);
         }
 
         .btn-outline:hover,
         .btn-outline:focus-visible {
-            background: rgba(99, 102, 241, 0.1);
+            background: #eef3fc;
         }
 
         main {
@@ -174,8 +215,8 @@
             gap: 0.4rem;
             padding: 0.45rem 0.85rem;
             border-radius: 999px;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--accent);
+            background: var(--brand-orange);
+            color: var(--brand-navy);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -186,11 +227,12 @@
             font-size: clamp(2.5rem, 6vw, 4.25rem);
             line-height: 1.05;
             margin: 1.5rem 0 1rem;
+            color: var(--brand-navy);
         }
 
         .hero p {
             font-size: clamp(1.05rem, 2vw, 1.2rem);
-            color: var(--text-muted);
+            color: var(--muted);
             margin-bottom: 2rem;
             max-width: 36rem;
         }
@@ -202,11 +244,11 @@
         }
 
         .hero-card {
-            background: linear-gradient(145deg, var(--surface), rgba(255, 255, 255, 0.65));
-            border: 1px solid rgba(148, 163, 184, 0.18);
+            background: linear-gradient(145deg, var(--surface), rgba(255, 255, 255, 0.8));
+            border: 1px solid rgba(0, 45, 98, 0.12);
             border-radius: 1.75rem;
             padding: clamp(1.75rem, 4vw, 2.5rem);
-            box-shadow: 0 22px 55px rgba(15, 23, 42, 0.12);
+            box-shadow: 0 22px 55px rgba(0, 45, 98, 0.12);
             display: grid;
             gap: 1.5rem;
         }
@@ -224,16 +266,17 @@
         .stat strong {
             display: block;
             font-size: clamp(2rem, 4vw, 2.6rem);
-            color: var(--accent);
+            color: var(--brand-orange);
         }
 
         .stat span {
-            color: var(--text-muted);
+            color: var(--muted);
             font-size: 0.9rem;
         }
 
         section {
             padding: clamp(3.5rem, 8vw, 5rem) 0;
+            scroll-margin-top: 6.5rem;
         }
 
         .section-header {
@@ -247,7 +290,7 @@
             letter-spacing: 0.1em;
             font-weight: 600;
             font-size: 0.75rem;
-            color: var(--accent);
+            color: var(--brand-orange);
         }
 
         .section-header h2 {
@@ -256,7 +299,7 @@
         }
 
         .section-header p {
-            color: var(--text-muted);
+            color: var(--muted);
             font-size: clamp(1rem, 2vw, 1.1rem);
             margin: 0;
         }
@@ -271,8 +314,8 @@
             background: var(--surface);
             border-radius: 1.5rem;
             padding: 2rem;
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(0, 45, 98, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 45, 98, 0.08);
             display: grid;
             gap: 1rem;
         }
@@ -284,7 +327,7 @@
 
         .card p {
             margin: 0;
-            color: var(--text-muted);
+            color: var(--muted);
             line-height: 1.6;
         }
 
@@ -292,58 +335,105 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.4rem 0.75rem;
+            padding: 0.4rem 0.85rem;
             border-radius: 999px;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            background: rgba(99, 102, 241, 0.12);
-            color: var(--accent);
+            background: var(--brand-orange);
+            color: var(--brand-navy);
             width: max-content;
         }
 
-        .portfolio {
+        .pricing {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: clamp(1.75rem, 5vw, 3rem);
-            align-items: center;
+            gap: clamp(1.75rem, 5vw, 2.5rem);
+            align-items: stretch;
         }
 
-        .mockup {
-            position: relative;
+        .pricing-tier {
+            background: var(--surface);
             border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 24px 65px rgba(15, 23, 42, 0.18);
+            padding: 2.25rem 2rem;
+            border: 1px solid rgba(0, 45, 98, 0.12);
+            box-shadow: 0 20px 45px rgba(0, 45, 98, 0.1);
+            display: grid;
+            gap: 1.25rem;
         }
 
-        .mockup img {
-            display: block;
-            width: 100%;
-            height: auto;
+        .pricing-tier strong {
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            color: var(--brand-navy);
         }
 
-        .mockup::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.65) 100%);
-            opacity: 0;
-            transition: opacity 180ms ease;
+        .pricing-tier.featured {
+            border: 2px solid var(--brand-orange);
+            box-shadow: 0 25px 55px var(--ring);
         }
 
-        .mockup:hover::after,
-        .mockup:focus-within::after {
-            opacity: 1;
+        .pricing-tier ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            display: grid;
+            gap: 0.5rem;
+            color: var(--muted);
         }
 
-        .mockup-caption {
-            position: absolute;
-            left: 1.5rem;
-            bottom: 1.5rem;
-            color: #fff;
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+            align-items: start;
+        }
+
+        .quote-card {
+            background: var(--surface);
+            border-radius: 1.5rem;
+            padding: clamp(1.75rem, 4vw, 2.25rem);
+            border: 1px solid rgba(0, 45, 98, 0.12);
+            box-shadow: 0 18px 45px rgba(0, 45, 98, 0.12);
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .quote-card form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-field {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .form-field label {
             font-weight: 600;
-            letter-spacing: 0.03em;
+            font-size: 0.95rem;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            font: inherit;
+            padding: 0.7rem 0.85rem;
+            border-radius: 0.85rem;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.98);
+            resize: vertical;
+            color: var(--ink);
+        }
+
+        .form-field input:focus-visible,
+        .form-field select:focus-visible,
+        .form-field textarea:focus-visible {
+            border-color: var(--brand-navy);
+            box-shadow: 0 0 0 4px var(--ring);
+        }
+
+        .form-field textarea {
+            min-height: 120px;
         }
 
         .process {
@@ -355,7 +445,7 @@
         .step {
             background: var(--surface);
             border-radius: 1.25rem;
-            border: 1px solid rgba(148, 163, 184, 0.2);
+            border: 1px solid rgba(0, 45, 98, 0.12);
             padding: 1.75rem;
             display: grid;
             gap: 0.75rem;
@@ -363,7 +453,7 @@
 
         .step strong {
             font-size: 1.6rem;
-            color: var(--accent);
+            color: var(--brand-orange);
         }
 
         .testimonials {
@@ -376,8 +466,8 @@
             background: linear-gradient(160deg, var(--surface), rgba(255, 255, 255, 0.65));
             border-radius: 1.5rem;
             padding: 2rem;
-            border: 1px solid rgba(148, 163, 184, 0.18);
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(0, 45, 98, 0.12);
+            box-shadow: 0 18px 40px rgba(0, 45, 98, 0.12);
             display: grid;
             gap: 1.25rem;
         }
@@ -386,20 +476,20 @@
             margin: 0;
             font-size: 1.05rem;
             line-height: 1.6;
-            color: var(--text);
+            color: var(--ink);
         }
 
         .testimonial cite {
             font-style: normal;
-            color: var(--text-muted);
+            color: var(--muted);
         }
 
         .cta {
-            background: linear-gradient(135deg, var(--surface-dark), #1e2765);
+            background: linear-gradient(135deg, var(--brand-navy), #001537);
             color: #fff;
             border-radius: 2rem;
             padding: clamp(2.5rem, 6vw, 3.5rem);
-            box-shadow: 0 35px 70px rgba(15, 23, 42, 0.25);
+            box-shadow: 0 35px 70px rgba(0, 45, 98, 0.25);
             display: grid;
             gap: 1.5rem;
             text-align: center;
@@ -408,12 +498,71 @@
         .cta p {
             margin: 0;
             font-size: clamp(1.05rem, 2vw, 1.2rem);
-            color: rgba(226, 232, 240, 0.9);
+            color: rgba(226, 232, 240, 0.92);
+        }
+
+        .follow-strip {
+            background: rgba(0, 45, 98, 0.04);
+            padding: 1.75rem 0;
+        }
+
+        .follow-strip .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem 1.5rem;
+        }
+
+        .follow-strip strong {
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--brand-navy);
+        }
+
+        .follow-links {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .follow-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 600;
+            color: var(--brand-navy);
+            text-decoration: none;
+        }
+
+        .follow-links a:hover,
+        .follow-links a:focus-visible {
+            color: var(--brand-orange);
+        }
+
+        .follow-links svg {
+            width: 1.15rem;
+            height: 1.15rem;
+            flex-shrink: 0;
+            fill: currentColor;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
         footer {
             padding: 2.5rem 0 2rem;
-            color: var(--text-muted);
+            color: var(--muted);
         }
 
         .footer-grid {
@@ -435,18 +584,18 @@
 
         .footer-links a {
             text-decoration: none;
-            color: inherit;
+            color: var(--brand-navy);
         }
 
         .footer-links a:hover,
         .footer-links a:focus-visible {
-            color: var(--accent);
+            color: var(--brand-orange);
         }
 
         .footer-bottom {
             margin-top: 2rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(148, 163, 184, 0.2);
+            border-top: 1px solid rgba(0, 45, 98, 0.12);
             display: flex;
             flex-direction: column;
             gap: 1rem;
@@ -454,17 +603,78 @@
             font-size: 0.9rem;
         }
 
+        .nav-toggle {
+            display: none;
+            border: 1px solid rgba(0, 45, 98, 0.18);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--brand-navy);
+            padding: 0.55rem 0.85rem;
+            border-radius: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .nav-toggle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
         @media (max-width: 720px) {
             header {
-                position: static;
+                inset: 0 0 auto 0;
+            }
+
+            nav {
+                position: relative;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
             }
 
             .nav-links {
+                position: absolute;
+                inset: calc(100% + 0.75rem) 0 auto;
+                background: rgba(247, 249, 252, 0.98);
+                border: 1px solid rgba(0, 45, 98, 0.12);
+                border-radius: 1.25rem;
+                box-shadow: 0 25px 60px rgba(0, 45, 98, 0.12);
+                padding: 1rem 1.25rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+            }
+
+            .nav-links a::after {
                 display: none;
+            }
+
+            .nav-links.open {
+                max-height: 500px;
+                opacity: 1;
+            }
+
+            .nav-links .btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .hero-card {
                 order: -1;
+            }
+
+            .follow-strip .container {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .follow-links {
+                justify-content: center;
             }
         }
     </style>
@@ -472,17 +682,28 @@
 <body>
     <header>
         <div class="container">
-            <nav>
+            <nav aria-label="Primary">
                 <a href="#top" class="brand">
-                    <span class="brand-mark">BP</span>
-                    BrightPath Creative
+                    <svg class="brand-logo" viewBox="0 0 48 48" role="img" aria-hidden="true" focusable="false">
+                        <circle cx="24" cy="24" r="23" fill="var(--brand-navy)" />
+                        <path d="M31 12c-3.8-2.2-9-1.7-11.8.5-2.5 2-3.2 5.8-.2 7.6 1.9 1.2 4.6 1.1 6.7 1.8 2 .7 3.3 2.1 2.4 3.8-1 2-4 2.5-6.7 1.9-2.2-.5-4.3-1.8-5.9-3.5l-2.2 2.5c2.1 2.4 5 4.2 8.1 4.8 4.6.9 9.7-.3 12.1-3.9 2.3-3.3 1-7.1-2.8-8.6-2.1-.8-4.8-.8-6.8-1.6-1.5-.6-2.3-1.7-1.5-3 1.2-1.8 4.1-2.3 6.5-1 1.5.7 2.8 1.8 3.9 3l2.2-2.4c-1.1-1.4-2.7-2.8-4.9-4z" fill="var(--brand-orange)" />
+                    </svg>
+                    Sunday Mobile Lube
                 </a>
-                <div class="nav-links">
+                <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="6" x2="20" y2="6"></line>
+                        <line x1="4" y1="12" x2="20" y2="12"></line>
+                        <line x1="4" y1="18" x2="20" y2="18"></line>
+                    </svg>
+                    Menu
+                </button>
+                <div class="nav-links" id="primary-navigation">
                     <a href="#services">Services</a>
-                    <a href="#portfolio">Portfolio</a>
-                    <a href="#process">Process</a>
-                    <a href="#testimonials">Testimonials</a>
-                    <a href="#contact" class="btn btn-outline">Start a project</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#quote">Get a quote</a>
+                    <a href="#contact">Contact</a>
+                    <a href="tel:+13463647856" class="btn btn-outline">Call (346) 364-7856</a>
                 </div>
             </nav>
         </div>
@@ -492,35 +713,41 @@
         <section class="hero">
             <div class="container hero-grid">
                 <div>
-                    <span class="hero-eyebrow">Digital experiences that guide and inspire</span>
-                    <h1>Design-led product teams for bold, mission-driven brands.</h1>
-                    <p>We help growing organizations make confident leaps forward through strategy, design, and human-centered development. From first impression to lasting adoption, every pixel is intentionally crafted.</p>
+                    <span class="hero-eyebrow">Evening mobile oil change crew</span>
+                    <h1>North Houston oil changes after work, right in your driveway.</h1>
+                    <p>Sunday Mobile Lube brings fresh oil, filters, and 15 years of service know-how to drivers across Kingwood, Atascocita, Porter, New Caney, and the greater North Houston area — all between 6 and 11 PM.</p>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#contact">Book a discovery call</a>
-                        <a class="btn btn-outline" href="#portfolio">View recent work</a>
+                        <a class="btn btn-primary" href="tel:+13463647856">Call (346) 364-7856</a>
+                        <a class="btn btn-outline" href="sms:+13463647856">Text to lock in a slot</a>
                     </div>
                 </div>
-                <div class="hero-card" aria-label="Studio highlights">
+                <div class="hero-card" aria-label="Service highlights">
                     <div class="stats">
                         <div class="stat">
-                            <strong>120+</strong>
-                            <span>launches guided from spark to scale</span>
+                            <strong>6 – 11 PM</strong>
+                            <span>evening appointments that fit life after work</span>
                         </div>
                         <div class="stat">
-                            <strong>38%</strong>
-                            <span>average increase in product conversions</span>
+                            <strong>15 years</strong>
+                            <span>under-the-hood experience serving Houston drivers</span>
                         </div>
                     </div>
                     <div>
-                        <span class="pill">Trusted by teams at</span>
-                        <p style="margin: 0; color: var(--text-muted); line-height: 1.6;">
-                            Lumera Health, Northwind Labs, Sierra Summit, and 45+ more innovators shaping brighter digital futures.
+                        <span class="pill">Serving North Houston</span>
+                        <p style="margin: 0; color: var(--muted); line-height: 1.6;">
+                            Mobile coverage includes Kingwood, Atascocita, Porter, New Caney, Spring, Humble, and surrounding North Houston neighborhoods.
                         </p>
                     </div>
                     <div>
-                        <span class="pill">What clients say</span>
-                        <p style="margin: 0; color: var(--text-muted); line-height: 1.6;">
-                            “BrightPath is the rare partner who can clarify strategy, delight stakeholders, and ship production-ready experiences on time.”
+                        <span class="pill">What to expect</span>
+                        <p style="margin: 0; color: var(--muted); line-height: 1.6;">
+                            A seasoned mobile tech arrives with premium oil, filters, and a drip-free setup—no mess, no waiting room.
+                        </p>
+                    </div>
+                    <div>
+                        <span class="pill">Oil options</span>
+                        <p style="margin: 0; color: var(--muted); line-height: 1.6;">
+                            Choose from Conventional, Synthetic Blend, or Full Synthetic Pennzoil (or your preferred brand).
                         </p>
                     </div>
                 </div>
@@ -531,58 +758,151 @@
             <div class="container">
                 <div class="section-header">
                     <span class="section-eyebrow">Services</span>
-                    <h2>Unified product teams across strategy, design, and engineering.</h2>
-                    <p>We embed alongside your team to ship ambitious launches that feel seamless for stakeholders and intuitive for your users.</p>
+                    <h2>Everything your engine needs without leaving home.</h2>
+                    <p>Every evening visit includes fluid top-offs, multi-point checks, and a digital service recap so you know exactly what was serviced before bedtime.</p>
                 </div>
                 <div class="cards-grid">
                     <article class="card">
-                        <span class="pill">Strategy</span>
-                        <h3>Product research & positioning</h3>
-                        <p>Clarify value, align stakeholders, and map a product vision that moves markets. We surface insights, customer journeys, and prioritized roadmaps grounded in evidence.</p>
+                        <span class="pill">Conventional</span>
+                        <h3>Essential Evening Change</h3>
+                        <p>Quality conventional oil up to 5 quarts, OEM filter, tire pressure set, and fluid top-offs — perfect for daily drivers who want dependable care after work.</p>
                     </article>
                     <article class="card">
-                        <span class="pill">Design</span>
-                        <h3>Brand-forward experience design</h3>
-                        <p>Create interfaces your customers remember. From systems and prototyping to copy and motion, we deliver cohesive, accessible stories across every screen.</p>
+                        <span class="pill">Synthetic blend</span>
+                        <h3>Balanced Performance Plan</h3>
+                        <p>Synthetic blend oil for extra protection, cabin filter check, battery test, and windshield wash refill — handled while you finish dinner.</p>
                     </article>
                     <article class="card">
-                        <span class="pill">Build</span>
-                        <h3>Full-stack development sprints</h3>
-                        <p>Ship performant, secure, and maintainable products using modern technologies. We deliver code your internal teams can easily adopt and extend.</p>
+                        <span class="pill">Full synthetic</span>
+                        <h3>Pennzoil Premium Service</h3>
+                        <p>Full Synthetic Pennzoil (or your preferred brand), extended-life filter options, multi-point inspection, and digital service log delivered to your inbox.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio">
+        <section id="pricing">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow">Recent Work</span>
-                    <h2>Selected collaborations shaping smarter experiences.</h2>
-                    <p>Each partnership is custom-tailored. Here are a few highlights from the past year.</p>
+                    <span class="section-eyebrow">Pricing</span>
+                    <h2>Transparent packages tailored to your vehicle.</h2>
+                    <p>No shop fees or surprise add-ons—just the oil you prefer and an appointment that works after work.</p>
                 </div>
-                <div class="portfolio">
-                    <figure class="mockup" tabindex="0">
-                        <img src="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1200&q=80" alt="Dashboard interface with charts and analytics widgets">
-                        <figcaption class="mockup-caption">Northwind Labs • Analytics platform refresh</figcaption>
-                    </figure>
-                    <div class="cards-grid" style="gap: 1.5rem;">
-                        <article class="card">
-                            <span class="pill">Product Launch</span>
-                            <h3>Lumera Health onboarding</h3>
-                            <p>Crafted an interactive onboarding flow resulting in a 42% lift in completed registrations within the first month post-launch.</p>
-                        </article>
-                        <article class="card">
-                            <span class="pill">Brand Design</span>
-                            <h3>Sierra Summit identity</h3>
-                            <p>Developed a flexible identity system and cross-platform UI kit empowering rapid experimentation across web and mobile.</p>
-                        </article>
-                        <article class="card">
-                            <span class="pill">Platform</span>
-                            <h3>Coastal CoLab marketplace</h3>
-                            <p>Rebuilt the marketplace experience with modular components, netting a 33% increase in seller applications quarter over quarter.</p>
-                        </article>
-                    </div>
+                <div class="pricing">
+                    <article class="pricing-tier">
+                        <span class="pill">Conventional</span>
+                        <strong>$59–79</strong>
+                        <p style="margin: 0; color: var(--muted);">Up to 5 quarts of high-quality conventional oil with OEM filter, fluids topped off, and driveway-safe cleanup.</p>
+                        <ul>
+                            <li>Includes OEM filter</li>
+                            <li>Tire pressure set to spec</li>
+                            <li>Digital service recap emailed</li>
+                        </ul>
+                        <a class="btn btn-outline" href="tel:+13463647856">Book this package</a>
+                    </article>
+                    <article class="pricing-tier featured">
+                        <span class="pill">Synthetic blend</span>
+                        <strong>$69–99</strong>
+                        <p style="margin: 0; color: var(--muted);">Up to 6 quarts of synthetic blend oil, premium filter, and coolant plus washer fluid top-offs.</p>
+                        <ul>
+                            <li>Includes battery health check</li>
+                            <li>Service reminder reset</li>
+                            <li>Available for cars, SUVs, and light trucks</li>
+                        </ul>
+                        <a class="btn btn-outline" href="sms:+13463647856">Text for availability</a>
+                    </article>
+                    <article class="pricing-tier">
+                        <span class="pill">Full synthetic</span>
+                        <strong>$89–129</strong>
+                        <p style="margin: 0; color: var(--muted);">Full Synthetic Pennzoil (or your preferred brand) up to 7 quarts, extended-life filter, and full inspection.</p>
+                        <ul>
+                            <li>Includes cabin filter check</li>
+                            <li>Multi-point digital report</li>
+                            <li>Perfect for high-mileage or performance vehicles</li>
+                        </ul>
+                        <a class="btn btn-outline" href="mailto:sundayjanitorial@gmail.com">Email to specify your oil</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="quote">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Get a quote</span>
+                    <h2>Tell us about your vehicle and we’ll lock in a 6–11 PM slot.</h2>
+                    <p>Share your details below or reach out directly—most quotes are confirmed within 15 minutes during service hours.</p>
+                </div>
+                <div class="quote-grid">
+                    <article class="quote-card">
+                        <h3>Prefer to talk it through?</h3>
+                        <p style="margin: 0; color: var(--muted); line-height: 1.6;">Call or text and we’ll match the right oil, filter, and appointment window for your driveway.</p>
+                        <div class="footer-links" style="gap: 0.5rem;">
+                            <a href="tel:+13463647856" class="btn btn-primary">Call (346) 364-7856</a>
+                            <a href="sms:+13463647856" class="btn btn-outline">Text to compare times</a>
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.1rem; color: var(--muted); display: grid; gap: 0.4rem;">
+                            <li>Quotes available daily from 6:00 PM – 11:00 PM</li>
+                            <li>Service throughout Kingwood, Atascocita, Porter, New Caney, and North Houston</li>
+                            <li>15 years of experience with domestic and import vehicles</li>
+                        </ul>
+                    </article>
+                    <article class="quote-card">
+                        <h3>Request a custom quote online</h3>
+                        <form>
+                            <div class="form-field">
+                                <label for="quote-name">Name</label>
+                                <input type="text" id="quote-name" name="name" placeholder="Jane Doe" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="quote-phone">Phone or email</label>
+                                <input type="text" id="quote-phone" name="contact" placeholder="(346) 364-7856" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="quote-vehicle">Vehicle &amp; oil preference</label>
+                                <textarea id="quote-vehicle" name="vehicle" placeholder="2020 Ford Explorer • Full Synthetic"></textarea>
+                            </div>
+                            <div class="form-field">
+                                <label for="quote-location">Service location</label>
+                                <select id="quote-location" name="location">
+                                    <option>Kingwood</option>
+                                    <option>Atascocita</option>
+                                    <option>Porter</option>
+                                    <option>New Caney</option>
+                                    <option>North Houston (other)</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="quote-time">Preferred evening window</label>
+                                <input type="text" id="quote-time" name="time" placeholder="Example: Tuesday between 7-8 PM">
+                            </div>
+                            <button class="btn btn-primary" type="submit">Send my quote request</button>
+                        </form>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="coverage">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-eyebrow">Coverage area</span>
+                    <h2>North Houston neighborhoods we service nightly.</h2>
+                    <p>If you can get home from work by 6, we can meet you there. Most visits wrap in under an hour with zero shop detours.</p>
+                </div>
+                <div class="cards-grid">
+                    <article class="card">
+                        <h3>Primary service zones</h3>
+                        <p style="margin: 0;">Kingwood • Atascocita • Porter • New Caney • Humble • Spring • North Houston neighborhoods</p>
+                    </article>
+                    <article class="card">
+                        <h3>Extended coverage</h3>
+                        <p style="margin: 0;">North Houston neighborhoods along I-69, FM 1960, and Beltway 8. Ask about downtown meetups for commuters.</p>
+                    </article>
+                    <article class="card">
+                        <h3>What we bring</h3>
+                        <p style="margin: 0;">Fully contained mobile bay, drip mats, lighting for evening service, and disposal of used oil &amp; filters.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -590,30 +910,30 @@
         <section id="process">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow">Process</span>
-                    <h2>A transparent cadence designed around your goals.</h2>
-                    <p>We combine clarity with momentum so every milestone delivers measurable progress for your team.</p>
+                    <span class="section-eyebrow">How it works</span>
+                    <h2>Simple, reliable, and right where you are.</h2>
+                    <p>From booking to clean-up, our goal is to make vehicle maintenance the easiest part of your week.</p>
                 </div>
                 <div class="process">
                     <article class="step">
                         <strong>01</strong>
-                        <h3>Discover</h3>
-                        <p>We immerse ourselves in your product, audience, and metrics to identify the opportunities that matter most.</p>
+                        <h3>Schedule</h3>
+                        <p>Call, text, or book online with your vehicle details and preferred time between 6 and 11 PM. Same-week slots available.</p>
                     </article>
                     <article class="step">
                         <strong>02</strong>
-                        <h3>Design</h3>
-                        <p>Collaborative workshops and prototyping cycles refine experience flows and align every detail with your brand.</p>
+                        <h3>We Arrive</h3>
+                        <p>Our fully equipped mobile bay pulls up with lighting, drip mats, and everything required for a clean evening service.</p>
                     </article>
                     <article class="step">
                         <strong>03</strong>
-                        <h3>Build</h3>
-                        <p>Engineering sprints bring the vision to life with accessible, performant solutions that are ready for production.</p>
+                        <h3>Service</h3>
+                        <p>Our experienced technician handles the oil change, inspection, and top-offs while you relax or finish your day.</p>
                     </article>
                     <article class="step">
                         <strong>04</strong>
-                        <h3>Launch & learn</h3>
-                        <p>We support deployment, training, and experimentation to ensure the product grows stronger with every release.</p>
+                        <h3>Review</h3>
+                        <p>We send a digital checklist, dispose of used oil responsibly, and remind you before your next service is due.</p>
                     </article>
                 </div>
             </div>
@@ -622,22 +942,22 @@
         <section id="testimonials">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-eyebrow">Testimonials</span>
-                    <h2>Partners who charted the path with us.</h2>
-                    <p>Our clients range from venture-backed start-ups to established enterprises embracing change.</p>
+                    <span class="section-eyebrow">Reviews</span>
+                    <h2>Neighbors who trust Sunday Mobile Lube.</h2>
+                    <p>Drivers across North Houston count on us for professional service without the downtime.</p>
                 </div>
                 <div class="testimonials">
                     <article class="testimonial">
-                        <p>“BrightPath helped us translate a complex health platform into a warm, reassuring experience. Our activation rate climbed instantly and our team felt supported every step.”</p>
-                        <cite>Jordan Avery, VP Product • Lumera Health</cite>
+                        <p>“They showed up after dinner, laid down mats, and had my SUV buttoned up in 40 minutes. The full report hit my inbox before I went to bed.”</p>
+                        <cite>— Alicia M., Spring, TX</cite>
                     </article>
                     <article class="testimonial">
-                        <p>“Their designers and engineers operate as one team. In eight weeks we launched a new analytics suite with stronger adoption than the previous year combined.”</p>
-                        <cite>Priya Desai, Head of Product • Northwind Labs</cite>
+                        <p>“I worked a full shift, got home at 7, and they were in my driveway ten minutes later. Oil change, filter, and fluids done before the kids’ bedtime.”</p>
+                        <cite>— Brandon H., Kingwood homeowner</cite>
                     </article>
                     <article class="testimonial">
-                        <p>“From research to roll-out, BrightPath brings clarity. They made complex stakeholder feedback feel effortless and pushed our brand to a new level.”</p>
-                        <cite>Marcus Li, COO • Sierra Summit</cite>
+                        <p>“Prompt texts, professional setup, and they brought the Pennzoil I prefer. I love not having to rush to a shop after work.”</p>
+                        <cite>— Lillian R., Atascocita</cite>
                     </article>
                 </div>
             </div>
@@ -646,55 +966,155 @@
         <section id="contact">
             <div class="container">
                 <div class="cta">
-                    <h2>Let’s build the next milestone together.</h2>
-                    <p>Share your product goals, and we’ll prepare a tailored roadmap showing how BrightPath can guide the next stage of your journey.</p>
-                    <a class="btn btn-primary" href="mailto:hello@brightpath.studio">Schedule a strategy session</a>
+                    <h2>Ready for your next oil change?</h2>
+                    <p>Call or text now and we’ll reserve a 6–11 PM slot that fits your evening. We come to you so you can unwind while your vehicle gets serviced.</p>
+                    <div class="hero-actions" style="justify-content: center;">
+                        <a class="btn btn-primary" href="tel:+13463647856">Call now</a>
+                        <a class="btn btn-outline" href="sms:+13463647856">Text us a preferred time</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <div class="follow-strip" aria-label="Follow Sunday Mobile Lube on social media">
+        <div class="container">
+            <strong>Follow us</strong>
+            <div class="follow-links">
+                <a href="https://facebook.com/SundayMobileLube" target="_blank" rel="noreferrer noopener" aria-label="Follow Sunday Mobile Lube on Facebook">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M13.5 9.5V7.9c0-.7.4-1.1 1.2-1.1h1.3V4.2h-2.2c-2.3 0-3.6 1.3-3.6 3.4v1.9H8.5v2.7h1.7v7.1h3.1v-7.1h2.3l.3-2.7h-2.4z" />
+                    </svg>
+                    Facebook
+                </a>
+                <a href="https://instagram.com/SundayMobileLube" target="_blank" rel="noreferrer noopener" aria-label="Follow Sunday Mobile Lube on Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h10a2 2 0 0 0 2-2V7c0-1.1-.9-2-2-2H7zm5 3.5A4.5 4.5 0 1 1 7.5 13 4.5 4.5 0 0 1 12 8.5zm0 2A2.5 2.5 0 1 0 14.5 13 2.5 2.5 0 0 0 12 10.5zm5.2-4.7a1 1 0 1 1-1 1 1 1 0 0 1 1-1z" />
+                    </svg>
+                    Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container footer-grid">
             <div class="footer-brand">
                 <a href="#top" class="brand">
-                    <span class="brand-mark">BP</span>
-                    BrightPath Creative
+                    <svg class="brand-logo" viewBox="0 0 48 48" role="img" aria-hidden="true" focusable="false">
+                        <circle cx="24" cy="24" r="23" fill="var(--brand-navy)" />
+                        <path d="M31 12c-3.8-2.2-9-1.7-11.8.5-2.5 2-3.2 5.8-.2 7.6 1.9 1.2 4.6 1.1 6.7 1.8 2 .7 3.3 2.1 2.4 3.8-1 2-4 2.5-6.7 1.9-2.2-.5-4.3-1.8-5.9-3.5l-2.2 2.5c2.1 2.4 5 4.2 8.1 4.8 4.6.9 9.7-.3 12.1-3.9 2.3-3.3 1-7.1-2.8-8.6-2.1-.8-4.8-.8-6.8-1.6-1.5-.6-2.3-1.7-1.5-3 1.2-1.8 4.1-2.3 6.5-1 1.5.7 2.8 1.8 3.9 3l2.2-2.4c-1.1-1.4-2.7-2.8-4.9-4z" fill="var(--brand-orange)" />
+                    </svg>
+                    Sunday Mobile Lube
                 </a>
-                <p>Designing and building resonant digital products with teams who believe technology can light the way forward.</p>
+                <p>North Houston’s evening mobile oil change crew. Trusted by busy families and commuters who want 15 years of experience delivered to their driveway.</p>
             </div>
             <div>
-                <h4>Visit</h4>
+                <h4>Service hours</h4>
                 <div class="footer-links">
-                    <a href="https://maps.app.goo.gl/T9GxJ7vFsQj7" target="_blank" rel="noreferrer">245 Market Street, Suite 1200<br>San Francisco, CA 94105</a>
-                    <a href="tel:+14155551234">+1 (415) 555-1234</a>
+                    <span>Daily: 6:00 PM – 11:00 PM</span>
+                    <span>After-work appointments at your home or office</span>
+                </div>
+            </div>
+            <div>
+                <h4>Get in touch</h4>
+                <div class="footer-links">
+                    <a href="tel:+13463647856">Call (346) 364-7856</a>
+                    <a href="sms:+13463647856">Text for appointment</a>
+                    <a href="mailto:sundayjanitorial@gmail.com">sundayjanitorial@gmail.com</a>
                 </div>
             </div>
             <div>
                 <h4>Connect</h4>
                 <div class="footer-links">
-                    <a href="mailto:hello@brightpath.studio">hello@brightpath.studio</a>
-                    <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-                    <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-                </div>
-            </div>
-            <div>
-                <h4>Resources</h4>
-                <div class="footer-links">
-                    <a href="#services">Capabilities overview</a>
-                    <a href="#portfolio">Case studies</a>
-                    <a href="#process">Engagement model</a>
+                    <a href="https://www.facebook.com/SundayMobileLube" target="_blank" rel="noreferrer noopener">Facebook @SundayMobileLube</a>
+                    <a href="https://www.instagram.com/SundayMobileLube" target="_blank" rel="noreferrer noopener">Instagram @SundayMobileLube</a>
+                    <a href="https://maps.app.goo.gl/placeholder" target="_blank" rel="noreferrer noopener">Google Reviews (coming soon)</a>
                 </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            <div>© <span id="year"></span> BrightPath Creative Studio. All rights reserved.</div>
-            <div>Crafted with curiosity and respect for the people who rely on your product every day.</div>
+            <div>© <span id="year"></span> Sunday Mobile Lube. All rights reserved.</div>
+            <div>Licensed, insured, and dedicated to keeping North Houston drivers on the move after work.</div>
         </div>
     </footer>
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (navToggle && navLinks) {
+            const toggleNav = (forceState) => {
+                const isOpen = typeof forceState === 'boolean' ? forceState : !navLinks.classList.contains('open');
+                navLinks.classList.toggle('open', isOpen);
+                navToggle.setAttribute('aria-expanded', isOpen);
+            };
+
+            navToggle.addEventListener('click', () => toggleNav());
+
+            navLinks.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (window.matchMedia('(max-width: 720px)').matches) {
+                        toggleNav(false);
+                    }
+                });
+            });
+
+            window.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    toggleNav(false);
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (!window.matchMedia('(max-width: 720px)').matches) {
+                    toggleNav(false);
+                }
+            });
+        }
+
+        const anchorLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+        const observedSections = anchorLinks
+            .map((link) => document.querySelector(link.getAttribute('href')))
+            .filter((section) => section);
+
+        const setActiveLink = (id) => {
+            if (!id) return;
+            anchorLinks.forEach((link) => {
+                const targetId = link.getAttribute('href').slice(1);
+                const isActive = targetId === id;
+                link.classList.toggle('active', isActive);
+                if (isActive) {
+                    link.setAttribute('aria-current', 'true');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
+        };
+
+        if (observedSections.length) {
+            const observer = new IntersectionObserver((entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                if (visible) {
+                    setActiveLink(visible.target.id);
+                }
+            }, {
+                rootMargin: '-45% 0px -45% 0px',
+                threshold: [0.2, 0.45, 0.6]
+            });
+
+            observedSections.forEach((section) => observer.observe(section));
+        }
+
+        const defaultId = anchorLinks[0]?.getAttribute('href').slice(1);
+        if (defaultId) {
+            setActiveLink(defaultId);
+        }
     </script>
 </body>
 </html>
